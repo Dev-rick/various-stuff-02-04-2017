@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+
+    <title>Lottery</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to various stuff</h1>
+    </header>
+    <section id="lottery">
+        <h3 class="underline">Use the lottery numbers generator!</h3>
+        <h5>How many random generated numbers do you want?</h5>
+        <form method="post" action="/lottery"> <!--Schickt einen post request, das action schickt es an die adresse "/"-->
+            <input name="num">
+            <button type="submit" class="button">Go!</button>
+        </form>
+    </section>
+    <section id="calculator">
+        <h3 class="underline">Or use the calculator!</h3>
+        <form method="post" action="/cal">
+            <input name="number1"><input id="operation_input" placeholder=" +  -  *  / " name="operation"><input name="number2">
+            <button class="button" type="submit">Calculate!</button>
+            <span>= {{result}}</span>
+        </form>
+    </section>
+    <section id="guess_the_secret_number">
+        <form method="get" action="/guessthesecretnumber">
+            <h3 class="underline">Or play the game where you have to guess the secret number!</h3>
+            <button class="button" type="submit">Play</button>
+        </form>
+    </section>
+    <section id="converter">
+        <h3 class="underline">Or use the converter!</h3>
+        <form method="post" action="/converter_to_miles">
+            <h5 class="underline">Convert km into miles</h5>
+            <input name="km">
+            <button class="button" type="submit">Convert!</button>
+            = {{miles}}
+        </form>
+        <form method="post" action="/converter_to_km">
+            <h5 class="underline">Convert miles into km</h5>
+            <input name="miles">
+            <button class="button" type="submit">Convert!</button>
+            = {{km}}
+        </form>
+    </section>
+    <footer>
+        <span class="rightfooter">
+            {{time}}
+        </span>
+    </footer>
+</body>
+</html>
