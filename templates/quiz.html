@@ -3,16 +3,18 @@
 {% block title %}Quiz{% endblock title %}
 
 {% block page_content %}
+<div class="regular">
+    <h1 class="underline">Welcome to the quiz!</h1>
 
-<h1 class="underline">Welcome to the quiz!</h1>
+    <form method="get" action="/quiz">
+        <p>What is the capital of   <span class="underline">{{question}}</span> ?</p>
+    </form>
+    <form method="post" action="/quiz">
+        <input type="text" name="answer">
+        <input type="hidden" value="{{question}}" name="country">
+        <button type="submit" class="button">Check! </button>
+    </form>
+    {{result}}
 
-<form method="get" action="/quiz">
-    <h3>What is the capital of {{question}}</h3>
-</form>
-<form method="post" action="/quiz">
-    <input type="text" name="answer">
-    <input type="hidden" value="{{question}}" name="country">
-    <button type="submit" class="button">Check!</button>
-</form>
-{{result}}
+</div>
 {% endblock page_content %}

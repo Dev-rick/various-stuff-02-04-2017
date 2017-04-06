@@ -4,13 +4,13 @@
 {% block title %}Lottery{% endblock title %}
 
 {% block page_content %}
-
+<div class="regular">
     <h1 class="underline">Use the lottery numbers generator!</h1>
-    <h5>How many random generated numbers do you want?</h5>
+    <h2>How many random generated numbers do you want?</h2>
     <form method="post" action="/lottery"> <!--Schickt einen post request, das action schickt es an die adresse "/"-->
         <input type="number" name="num">
         <button type="submit" class="button">Go!</button>
     </form>
-
+</div>
 
 {% endblock page_content %}

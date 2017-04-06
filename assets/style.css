@@ -1,15 +1,47 @@
 .underline {
     text-decoration: underline;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    red;
+    font-size: 35px;
+    font-weight: bold;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color:    red;
+    font-size: 35px;
+    font-weight: bold;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    red;
+    font-size: 35px;
+    font-weight: bold;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    red;
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .NoUnderline {
     text-decoration: none;
 }
+
 body{
     background-color: #F2F2F2;
     font-family: 'Tangerine', serif;
-    font-size: 35px;
+    font-size: 40px;
     text-shadow: 4px 4px 4px #aaa;
+    font-weight: bold;
 }
 
 header {
@@ -17,53 +49,19 @@ header {
     text-decoration: underline;
 }
 
-#lottery {
+.regular {
     display: inline-block;
     border: 2px solid #aaa;
-    width: 44%;
+
     padding: 20px;
     margin-right: 10px;
     border-radius: 5px;
 }
 
-#calculator {
-    display: inline-block;
-    margin-top: 50px;
-    border: 2px solid #aaa;
-    padding: 20px;
-    width: 44%;
-    border-radius: 5px;
-}
-
-#guess_the_secret_number {
-    display: inline-block;
-    margin-top: 50px;
-    border: 2px solid #aaa;
-    padding: 20px;
-    width: 88%;
-    border-radius: 5px;
-}
-
 #inner {
-  width: 50%;
   margin: 0 auto;
 }
 
-#converter {
-    display: inline-block;
-    margin-top: 50px;
-    border: 2px solid #aaa;
-    padding: 20px;
-    border-radius: 5px;
-}
-#quiz {
-    display: inline-block;
-    margin-top: 50px;
-    border: 2px solid #aaa;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 5px;
-}
 
 
 .rightfooter {
@@ -74,11 +72,11 @@ header {
 .button {
     display: inline-block;
     border: 1px solid black;
-    padding: 1px 2px;
+    padding: 4px 7px;
     text-decoration: none;
     color: black;
     background-color: #F2F2F2;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 300;
     border-radius: 5px;
 }
@@ -100,10 +98,11 @@ footer {
 }
 
 input {
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 35px;
+    font-weight: 500;
     border-radius: 5px;
     border: 1px solid black;
+    padding: 3px;
 }
 
 #operation_input {
