@@ -140,7 +140,8 @@ class QuizHandler(BaseHandler):
     def get(self):
         now = super(QuizHandler, self).get_time()
         country = quiz.get_random_capital(quiz.countrydict)
-        params = {"time": now, "question": country}
+        capital_picture = quiz.get_capital_picture(country, quiz.capitalpicturedict)
+        params = {"time": now, "question": country,"capital_picture": capital_picture}
         return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
 
     def post(self):
@@ -149,7 +150,8 @@ class QuizHandler(BaseHandler):
         country = self.request.get("country")
         result = quiz.check_result(country, user_capital, quiz.countrydict)
         new_country = quiz.get_random_capital(quiz.countrydict)
-        params = {"time": now, "result": result, "question": new_country}
+        capital_picture = quiz.get_capital_picture(country, quiz.capitalpicturedict)
+        params = {"time": now, "result": result, "question": new_country, "capital_picture": capital_picture}
         return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
 
 

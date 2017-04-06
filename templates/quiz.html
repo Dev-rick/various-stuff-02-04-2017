@@ -8,6 +8,7 @@
 
     <form method="get" action="/quiz">
         <p>What is the capital of   <span class="underline">{{question}}</span> ?</p>
+        <img src="{{capital_picture}}">
     </form>
     <form method="post" action="/quiz">
         <input type="text" name="answer">
@@ -15,6 +16,8 @@
         <button type="submit" class="button">Check! </button>
     </form>
     {{result}}
+
+
 
 </div>
 {% endblock page_content %}
