@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block title %}Converter{% endblock title %}
+
+{% block page_content %}
+
+
+<h1 class="underline">Use the converter!</h1>
+<form method="post" action="/converter_to_miles">
+    <h5 class="underline">Convert km into miles</h5>
+    <input type="number" name="km">
+    <button class="button" type="submit">Convert!</button>
+    = {{miles}}
+</form>
+<form method="post" action="/converter_to_km">
+    <h5 class="underline">Convert miles into km</h5>
+    <input type="number" name="miles">
+    <button class="button" type="submit">Convert!</button>
+    = {{km}}
+</form>
+
+{% endblock page_content %}

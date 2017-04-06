@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <link type="text/css" rel="stylesheet" href="assets/style.css" />
+        <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+
+    </head>
+    <body>
+        <div class="container-fluid">
+            <a href="/">Home</a> |
+            <a href="/quiz">Quiz</a> |
+            <a href="/guessthesecretnumber">Guess the secret number!</a> |
+            <a href="/calculator">Calculator</a> |
+            <a href="/converter">Converter</a> |
+            <a href="/lottery">Lottery</a> |
+            <a href="/csi">CSI program</a> |
+
+            <br>
+            <br>
+
+            <footer>
+                <span class="rightfooter">
+                    {{time}}
+                </span>
+            </footer>
+
+        {% block page_content %}
+        {% endblock page_content %}
+        </div>
+    </body>
+</html>

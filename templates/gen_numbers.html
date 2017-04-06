@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet" href="assets/style.css" />
-    <link rel="stylesheet" type="text/css"
-          href="https://fonts.googleapis.com/css?family=Tangerine">
+{% extends "base.html" %}
 
-    <title>gen_numbers</title>
-</head>
-<body>
+{% block title %}Lottery{% endblock title %}
 
-    <header>
-        <h2>Here are your random generated numbers:</h2>
-    </header>
+{% block page_content %}
 
-    <p>{{list_of_numbers_int}}</p>
+<header>
+    <h2>Here are your random generated numbers:</h2>
+</header>
 
-    <hr>
+<p>{{list_of_numbers_int}}</p>
 
-    <p class="underline">Or written by bullet points:</p>
-    <ul>
-    {% for number in list_of_numbers_int %}
-        <li>{{ number }}</li>
-    {% endfor %}
-    </ul>
-    <footer>
-        <span class="rightfooter">
-            {{time}}
-        </span>
-    </footer>
-</body>
-</html>
+<hr>
+
+<p class="underline">Or written by bullet points:</p>
+<ul>
+{% for number in list_of_numbers_int %}
+    <li>{{ number }}</li>
+{% endfor %}
+</ul>
+<footer>
+    <span class="rightfooter">
+        {{time}}
+    </span>
+</footer>
+
+{% endblock page_content %}

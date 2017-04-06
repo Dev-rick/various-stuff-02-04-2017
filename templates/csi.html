@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}CSI forensic program{% endblock title %}
+
+{% block page_content %}
+
+<h1 class="underline">CSI forensic program</h1>
+<form method="post" action="/csi">
+    <textarea rows="4" cols="50" name="dna">Example of an DNA: ACAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCACGGCCACCGCTGCCCTGCCCCTGGAGGGTGGCCCCACCGGCCGAGACAGCGAGCATATGCAGGAAGCGGCAGGAATAAGGAAAAGCAGCCTCCTGACTTTCCTCGCTTGGTGGTTTGAGTGGACCTCCCAGGCCAGTGCCGGGCCCCTCATAGGAGAGGAAGCTCGGGAGGTGGCCAGGCGGCAGGAAGGCGCACCCCCCCAGCAATCCGCGCGCCGGGACAGAATGCCCTGCAGGAACTTCTTCTGGAAGACCTTCTCCTCCTGCAAATAAAACCTCACCCATGAATGCTCACGCAAGTTTAATTACAGACCTGAA</textarea>
+    <button class="button" type="submit">Check!</button>
+    <p>{{gender}}</p>
+    <p>{{race}}</p>
+    <p>{{hair_color}}</p>
+    <p>{{eye_color}}</p>
+    <p>{{facial_shape}}</p>
+    <p class="underline">{{suspect}}</p>
+</form>
+
+
+{% endblock page_content %}

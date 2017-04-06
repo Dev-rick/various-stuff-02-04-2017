@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Calculator{% endblock title %}
+
+{% block page_content %}
+<h1 class="underline">Use the calculator!</h1>
+<form method="post" action="/calculator">
+    <input type="number" name="number1"><input id="operation_input" placeholder=" +  -  *  / " name="operation"><input type="number" name="number2">
+    <button class="button" type="submit">Calculate!</button>
+    <span>= {{result}}</span>
+</form>
+
+{% endblock page_content %}
