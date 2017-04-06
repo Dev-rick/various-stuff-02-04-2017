@@ -6,9 +6,9 @@
 <div class="regular">
     <h1 class="underline">Use the calculator!</h1>
     <form method="post" action="/calculator">
-        <input type="number" name="number1">
+        <input type="number" step="0.01" name="number1">
         <input class="bold" id="operation_input" placeholder=" +  -  *  / " name="operation">
-        <input type="number" name="number2">
+        <input type="number" step="0.01" name="number2">
         <button class="button" type="submit">Calculate!</button>
         <span>= {{result}}</span>
     </form>

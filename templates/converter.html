@@ -9,13 +9,13 @@
     <h1 class="underline">Use the converter!</h1>
     <form method="post" action="/converter_to_miles">
         <h2 class="normaltext">Convert km into miles</h2>
-        <input type="number" name="km">
+        <input type="number" step="0.01" name="km">
         <button class="button" type="submit">Convert!</button>
         = {{miles}}
     </form>
     <form method="post" action="/converter_to_km">
         <h2 class="normaltext">Convert miles into km</h2>
-        <input type="number" name="miles">
+        <input type="number" step="0.01" name="miles">
         <button class="button" type="submit">Convert!</button>
         = {{km}}
     </form>

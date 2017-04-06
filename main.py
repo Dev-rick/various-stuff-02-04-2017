@@ -129,7 +129,7 @@ class ConverterToMilesHandler(BaseHandler):
         km = float(km)
         import converter
         km_in_miles = converter.converter_km_to_miles(km)
-        km_in_miles = loat(km_in_miles)
+        km_in_miles = float(km_in_miles)
         params = {"time": now, "miles": km_in_miles}
         self.render_template("converter.html", params)
 
