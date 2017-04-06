@@ -3,10 +3,9 @@
 def guess_the_secret_number(guess):
     secret = str(25)
     if guess == secret:
-        return True
+        return "You have won!!!"
     else:
-        return False
-
+        return "You lost, try again!"
 
 
 

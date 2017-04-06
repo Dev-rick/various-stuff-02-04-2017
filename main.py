@@ -4,14 +4,16 @@ import os
 import jinja2
 from datetime import datetime
 import quiz
+import adv_calculator
+import Lottery
+import secret_number
+import converter
+import dna_program
 
 
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=False)
-
-
-
 
 
 
@@ -38,7 +40,6 @@ class BaseHandler(webapp2.RequestHandler):
 
 
 
-
 class MainPage(BaseHandler):
     def get(self):
         now = super(MainPage, self).get_time()
@@ -47,22 +48,38 @@ class MainPage(BaseHandler):
 
 
 
-
-class LotteryHandler(BaseHandler):
+class QuizHandler(BaseHandler):
     def get(self):
-        now = super(LotteryHandler, self).get_time()
-        params = {"time": now}
-        return self.render_template("lottery.html", params=params)  # render_template holt sich diese Datei
+        now = super(QuizHandler, self).get_time()
+        country = quiz.get_random_country(quiz.countrydict)
+        capital_picture = quiz.get_capital_picture(country, quiz.capitalpicturedict)
+        params = {"time": now, "question": country,"capital_picture": capital_picture}
+        return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
 
     def post(self):
-        now = super(LotteryHandler, self).get_time()
-        result = self.request.get("num")
-        result1 = int(result)
-        import Lottery
-        list_of_numbers_int = Lottery.random_numbers(result1)
-        params = {"list_of_numbers_int": list_of_numbers_int,"time": now}
-        return self.render_template("gen_numbers.html", params=params)
+        now = super(QuizHandler, self).get_time()
+        user_capital = self.request.get("answer")
+        country = self.request.get("country")
+        result = quiz.check_result(country, user_capital, quiz.countrydict)
+        new_country = quiz.get_random_country(quiz.countrydict)
+        capital_picture = quiz.get_capital_picture(new_country, quiz.capitalpicturedict)
+        params = {"time": now, "result": result, "question": new_country, "capital_picture": capital_picture}
+        return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
 
+
+
+class GuessSecretNumberHandler(BaseHandler):
+    def get(self):
+        now = super(GuessSecretNumberHandler, self).get_time()
+        params = {"time": now}
+        return self.render_template("guess_secret_number.html", params=params)
+
+    def post(self):
+        now = super(GuessSecretNumberHandler, self).get_time()
+        guess = self.request.get("guess")
+        result = secret_number.guess_the_secret_number(guess)
+        params = {"time": now, "result": result}
+        return self.render_template("guess_secret_number.html", params)
 
 
 
@@ -79,81 +96,9 @@ class CalHandler(MainPage):
         num1 = float(num1)
         num2 = float(num2)
         operation = self.request.get("operation")
-        import adv_calculator
         result = adv_calculator.calculate(operation, num1, num2)
         params = {"result": result, "time": now}
         return self.render_template("calculator.html", params=params)
-
-
-
-
-class GuessSecretNumberHandler(BaseHandler):
-    def get(self):
-        now = super(GuessSecretNumberHandler, self).get_time()
-        params = {"time": now}
-        return self.render_template("guess_secret_number.html", params=params)
-
-    def post(self):
-        now = super(GuessSecretNumberHandler, self).get_time()
-        guess = self.request.get("guess")
-        import secret_number
-        result = secret_number.guess_the_secret_number(guess)
-        if result == True:
-            result = "You have won!!!"
-        elif result == False:
-            result = "You lost, try again!"
-        params = {"time": now, "result": result}
-        return self.render_template("guess_secret_number.html", params)
-
-
-
-
-class ConverterToKmHandler(BaseHandler):
-    def post(self):
-        now = super(ConverterToKmHandler, self).get_time()
-        import converter
-        miles = self.request.get("miles")
-        miles = float(miles)
-        miles_in_km = converter.converter_miles_to_km(miles)
-        miles_in_km = str(miles_in_km)
-        params = {"time": now, "km": miles_in_km}
-        self.render_template("converter.html", params)
-
-
-
-
-class ConverterToMilesHandler(BaseHandler):
-    def post(self):
-        now = super(ConverterToMilesHandler, self).get_time()
-        km = self.request.get("km")
-        km = float(km)
-        import converter
-        km_in_miles = converter.converter_km_to_miles(km)
-        km_in_miles = float(km_in_miles)
-        params = {"time": now, "miles": km_in_miles}
-        self.render_template("converter.html", params)
-
-
-
-
-class QuizHandler(BaseHandler):
-    def get(self):
-        now = super(QuizHandler, self).get_time()
-        country = quiz.get_random_capital(quiz.countrydict)
-        capital_picture = quiz.get_capital_picture(country, quiz.capitalpicturedict)
-        params = {"time": now, "question": country,"capital_picture": capital_picture}
-        return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
-
-    def post(self):
-        now = super(QuizHandler, self).get_time()
-        user_capital = self.request.get("answer")
-        country = self.request.get("country")
-        result = quiz.check_result(country, user_capital, quiz.countrydict)
-        new_country = quiz.get_random_capital(quiz.countrydict)
-        capital_picture = quiz.get_capital_picture(new_country, quiz.capitalpicturedict)
-        params = {"time": now, "result": result, "question": new_country, "capital_picture": capital_picture}
-        return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
-
 
 
 
@@ -163,6 +108,45 @@ class ConvertHandler(BaseHandler):
         params = {"time": now}
         return self.render_template("converter.html", params=params)
 
+
+
+class ConverterToKmHandler(BaseHandler):
+    def post(self):
+        now = super(ConverterToKmHandler, self).get_time()
+        miles = self.request.get("miles")
+        miles = float(miles)
+        miles_in_km = converter.converter_miles_to_km(miles)
+        miles_in_km = str(miles_in_km)
+        params = {"time": now, "km": miles_in_km}
+        self.render_template("converter.html", params)
+
+
+
+class ConverterToMilesHandler(BaseHandler):
+    def post(self):
+        now = super(ConverterToMilesHandler, self).get_time()
+        km = self.request.get("km")
+        km = float(km)
+        km_in_miles = converter.converter_km_to_miles(km)
+        km_in_miles = float(km_in_miles)
+        params = {"time": now, "miles": km_in_miles}
+        self.render_template("converter.html", params)
+
+
+
+class LotteryHandler(BaseHandler):
+    def get(self):
+        now = super(LotteryHandler, self).get_time()
+        params = {"time": now}
+        return self.render_template("lottery.html", params=params)  # render_template holt sich diese Datei
+
+    def post(self):
+        now = super(LotteryHandler, self).get_time()
+        result = self.request.get("num")
+        result1 = int(result)
+        list_of_numbers_int = Lottery.random_numbers(result1)
+        params = {"list_of_numbers_int": list_of_numbers_int,"time": now}
+        return self.render_template("gen_numbers.html", params=params)
 
 
 
@@ -176,7 +160,6 @@ class DNAHandler(BaseHandler):
         now = super(DNAHandler, self).get_time()
         searched_dna = self.request.get("dna")
         criminal = []
-        import dna_program
         result_gender = dna_program.result_gender(searched_dna, dna_program.genders, criminal)
         result_race = dna_program.result_race(searched_dna, dna_program.races, criminal)
         result_hair_color = dna_program.result_hair_color(searched_dna, dna_program.hair_colors, criminal)
@@ -195,18 +178,14 @@ class DNAHandler(BaseHandler):
 
 
 
-
-
-
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ("/lottery", LotteryHandler),
-    ("/calculator", CalHandler),
+    ("/quiz", QuizHandler),
     ("/guessthesecretnumber", GuessSecretNumberHandler),
+    ("/calculator", CalHandler),
     ("/converter", ConvertHandler),
     ("/converter_to_km", ConverterToKmHandler),
     ("/converter_to_miles", ConverterToMilesHandler),
-    ("/quiz", QuizHandler),
     ("/lottery", LotteryHandler),
     ("/csi", DNAHandler),
 ], debug=True)
