@@ -123,8 +123,8 @@ input {
 }
 
 #result_text {
-    position: relative;
-    top: 20px;
+    display: inline-block;
+    margin-top: 20px;
 }
 
 textarea {
@@ -133,4 +133,8 @@ textarea {
     border-radius: 5px;
     border: 1px solid black;
     box-shadow: 4px 4px 4px #aaa;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
 }

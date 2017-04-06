@@ -118,7 +118,7 @@ class ConverterToKmHandler(BaseHandler):
         miles_in_km = converter.converter_miles_to_km(miles)
         miles_in_km = str(miles_in_km)
         params = {"time": now, "km": miles_in_km}
-        self.render_template("converter.html", params)
+        return self.render_template("converter.html", params)
 
 
 
@@ -130,7 +130,7 @@ class ConverterToMilesHandler(BaseHandler):
         km_in_miles = converter.converter_km_to_miles(km)
         km_in_miles = float(km_in_miles)
         params = {"time": now, "miles": km_in_miles}
-        self.render_template("converter.html", params)
+        return self.render_template("converter.html", params)
 
 
 
@@ -143,8 +143,8 @@ class LotteryHandler(BaseHandler):
     def post(self):
         now = super(LotteryHandler, self).get_time()
         result = self.request.get("num")
-        result1 = int(result)
-        list_of_numbers_int = Lottery.random_numbers(result1)
+        result = int(result)
+        list_of_numbers_int = Lottery.random_numbers(result)
         params = {"list_of_numbers_int": list_of_numbers_int,"time": now}
         return self.render_template("gen_numbers.html", params=params)
 
@@ -173,7 +173,6 @@ class DNAHandler(BaseHandler):
                   "eye_color": result_eye_color,
                   "facial_shape": result_facial_shape,
                   "suspect": result_suspect}
-
         return self.render_template("csi.html", params=params)
 
 

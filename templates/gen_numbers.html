@@ -8,21 +8,13 @@
 <header>
     <p>Here are your random generated numbers:</p>
 </header>
-
 <p>{{list_of_numbers_int}}</p>
-
 <hr>
-
 <p class="underline">Or written by bullet points:</p>
 <ul>
 {% for number in list_of_numbers_int %}
     <li>{{ number }}</li>
 {% endfor %}
 </ul>
-<footer>
-    <span class="rightfooter">
-        {{time}}
-    </span>
-</footer>
 
 {% endblock page_content %}
