@@ -129,7 +129,7 @@ class ConverterToMilesHandler(BaseHandler):
         km = float(km)
         import converter
         km_in_miles = converter.converter_km_to_miles(km)
-        km_in_miles = str(km_in_miles)
+        km_in_miles = loat(km_in_miles)
         params = {"time": now, "miles": km_in_miles}
         self.render_template("converter.html", params)
 
@@ -150,7 +150,7 @@ class QuizHandler(BaseHandler):
         country = self.request.get("country")
         result = quiz.check_result(country, user_capital, quiz.countrydict)
         new_country = quiz.get_random_capital(quiz.countrydict)
-        capital_picture = quiz.get_capital_picture(country, quiz.capitalpicturedict)
+        capital_picture = quiz.get_capital_picture(new_country, quiz.capitalpicturedict)
         params = {"time": now, "result": result, "question": new_country, "capital_picture": capital_picture}
         return self.render_template("quiz.html", params=params)  # render_template holt sich diese Datei
 
