@@ -76,7 +76,7 @@ def result_facial_shape(searched_dna, facial_shapes, criminal):
 def result_suspect(suspects, criminal):
     for suspect in suspects: #i ist hier ein str, passt sich immer dem Inhalt (hier ein dict, also strings) an.
         if suspects[suspect] == criminal: #Mit suspects[i] greife ich auf die verschiedenen Listen im dict zu!
-            return "Your criminal who ate the ice cream is: %s" % suspect
+            return "Your criminal is: %s" % suspect
 
 
 
